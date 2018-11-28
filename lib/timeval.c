@@ -128,9 +128,12 @@ do_init_time(void)
     coverage_init();
 
     timewarp_seq = seq_create();
+    /*
     init_clock(&monotonic_clock, (!clock_gettime(CLOCK_MONOTONIC, &ts)
                                   ? CLOCK_MONOTONIC
                                   : CLOCK_REALTIME));
+    */
+    init_clock(&monotonic_clock, CLOCK_REALTIME);
     init_clock(&wall_clock, CLOCK_REALTIME);
     boot_time = timespec_to_msec(&monotonic_clock.cache);
 }
